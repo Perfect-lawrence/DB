@@ -24,8 +24,13 @@ port = 5432 # 默认是5432
 * 配置账户访问权限
 ```bash
 vim /var/lib/pgsql/11/data/pg_hba.conf
-82行处,放行内网访问
-host    all             all             192.168.0.0/16            ident
+82行处,放行内网访问 密码认证登陆 
+"METHOD can be "trust", "reject", "md5", "password", "scram-sha-256",
+# "gss", "sspi", "ident", "peer", "pam", "ldap", "radius" or "cert".
+# Note that "password" sends passwords in clear text; "md5" or
+# "scram-sha-256" are preferred since they send encrypted passwords.
+"
+host    all             all             192.168.0.0/16            password
 ```
 * 为数据库postgres用户配置密码
 ```bash
